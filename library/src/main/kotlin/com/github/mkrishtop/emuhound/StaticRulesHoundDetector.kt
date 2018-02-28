@@ -3,7 +3,11 @@ package com.github.mkrishtop.emuhound
 import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v4.content.ContextCompat
+import com.github.mkrishtop.emuhound.rules.andy.HardwareAndyEmulatorRule
 import com.github.mkrishtop.emuhound.rules.avd.*
+import com.github.mkrishtop.emuhound.rules.bluestacks.SharedFolderBluestacksEmulatorRule
+import com.github.mkrishtop.emuhound.rules.genymotion.ManufacturerGenymotionEmulatorRule
+import com.github.mkrishtop.emuhound.rules.jenkins.UserJenkinsEmulatorRule
 
 /**
  * Created by mykhailokryshtop on 2/27/18.
@@ -11,13 +15,21 @@ import com.github.mkrishtop.emuhound.rules.avd.*
 internal class StaticRulesHoundDetector(private val appContext: Context?) : HoundDetector {
 
     private val rules: Set<EmulatorRule> = setOf(
+            HardwareAndyEmulatorRule,
+
             AndroidSdkAVDEmulatorRule,
             EmulatorAVDEmulatorRule,
             GenericAVDEmulatorRule,
             GenericBrandAVDEmulatorRule,
             ModelGoogleSdkAVDEmulatorRule,
             ProductGoogleSdkAVDEmulatorRule,
-            UnknownAVDEmulatorRule
+            UnknownAVDEmulatorRule,
+
+            SharedFolderBluestacksEmulatorRule,
+
+            ManufacturerGenymotionEmulatorRule,
+
+            UserJenkinsEmulatorRule
     )
 
     override fun detect(input: HoundInput): HoundOutput {
